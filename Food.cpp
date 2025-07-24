@@ -1,12 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <random>
 #include <ctime>
 #include <cstdlib> // For rand() and srand()
-
 using namespace std;
-
 class Food
 {
 public:
@@ -17,8 +14,8 @@ public:
     {
         do {
             onSnake = false; // reset for next time
-            food = {rand() % width, rand() % height};
-            for(int i = 0; i < snakeBody.size(); i++)
+            food = {rand() % width, rand() % height}; // Generate random food position
+            for(int i = 0; i < snakeBody.size(); i++) // Check if the food position collides with the snake body
             {
                 if(food[0] == snakeBody[i][0] && food[1] == snakeBody[i][1])
                 {
