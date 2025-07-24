@@ -1,8 +1,5 @@
 #include <iostream>
-#include <string>
 #include <vector>
-#include <ctime>
-#include <cstdlib> // For rand() and srand()
 using namespace std;
 class Food
 {
