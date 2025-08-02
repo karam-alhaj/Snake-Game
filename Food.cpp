@@ -25,7 +25,7 @@ public:
             if (attempts >= maxAttempts) {
                 return {-1, -1}; // No space left for food, return an invalid position
             }
-        }while(onSnake);
+        }while(onSnake || food[0] == 0 || food[0] == width || food[1] == 0 || food[1] == height);
         return food;
     }
     Food(const vector<vector<int>>& snakeBody, int width, int height)
