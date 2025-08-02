@@ -36,10 +36,10 @@ class Snake
         default:
             break;
         }
-        
+
         if (!(head == this->body[0]))
         {
-           this->body.insert(body.begin(),head);    
+           this->body.insert(body.begin(),head);
         }
 
         else
