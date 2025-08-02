@@ -1,3 +1,7 @@
+# Title project: Snake-Game
+We held a meeting, where we learned about the project and the parts of the program, and then we thought about a suitable project structure for this program in terms of elements and functions.
+
+However, in the end, after facing technical problems and errors, we arrived at the following structure:
 # Classes
 
 ## Snake
@@ -8,7 +12,8 @@
 
 ### Functions
 
-    - move (a function for movement, it takes two arguments, one for input and one for a Boolean named ate_food)
+    - move (a function for movement, it takes two arguments,
+    one for input and one for a Boolean named ate_food)
 
 #### moving functions
 
@@ -43,7 +48,8 @@ It receives the snake head and tail's locations as a parameter.
     - gameLevel (an integer to track Game difficulty\level)
     - gameSpeed (an integer to use it in the Sleep() to delay the game, and every
     gameLevel the delay will decrease so the game will speed up)
-    - lastInput (a char to track the last input, so the snake moves until the user chance the direction of the snake.)
+    - lastInput (a char to track the last input, so the snake moves until the user
+    change the direction of the snake.)
     - snake (an instance from the Snake class, makes a snake object.)
     - food (an instance from the Food class, makes a Food object.)
     - obstaclesX (an integer stores the obstacles X axis)
