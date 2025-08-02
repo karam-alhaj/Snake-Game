@@ -1,7 +1,7 @@
 # Title project: Snake-Game
+github rebo link: https://github.com/karam-alhaj/Snake-Game
 We held a meeting, where we learned about the project and the parts of the program, and then we thought about a suitable project structure for this program in terms of elements and functions.
 
-github rebo link: https://github.com/karam-alhaj/Snake-Game
 
 However, in the end, after facing technical problems and errors, we arrived at the following structure:
 # Classes
