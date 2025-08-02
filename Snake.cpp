@@ -2,13 +2,21 @@
 #include <vector>
 
 using namespace std;
-class Snake{
-
+class Snake
+{
     public:
     vector<vector<int>> body;
-    
 
-    void move(char input,bool ate_food){
+    Snake(int len)
+    {
+        for (int i = 0; i < len; i++)
+        {
+            this->body.push_back({i + 5, 5});
+        }
+    }
+
+    void move(char input, bool ate_food)
+    {
         vector<int> head = this->body[0];
 
         switch (input)
@@ -28,24 +36,20 @@ class Snake{
         default:
             break;
         }
-       if (!(head == this->body[0])){
+        
+        if (!(head == this->body[0]))
+        {
            this->body.insert(body.begin(),head);    
-       }
-       else{
-        this->body.pop_back();
-       }
+        }
 
-        if (!ate_food){
+        else
+        {
             this->body.pop_back();
         }
 
+        if (!ate_food)
+        {
+            this->body.pop_back();
+        }
     }
-    
-    Snake(int len){
-           for (int i=0;i<len;i++){
-            this->body.push_back({i+5,5});
-           }
-    }
-        
-
 };
