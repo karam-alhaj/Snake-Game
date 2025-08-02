@@ -8,7 +8,8 @@
 
 ### Functions
 
-    - move (a function for movement, it takes two arguments, one for input and one for a Boolean named ate_food)
+    - move (a function for movement, it takes two arguments,
+    one for input and one for a Boolean named ate_food)
 
 #### moving functions
 
