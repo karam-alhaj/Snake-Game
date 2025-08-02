@@ -1,3 +1,7 @@
+# Title project: Snake-Game
+We held a meeting, where we learned about the project and the parts of the program, and then we thought about a suitable project structure for this program in terms of elements and functions.
+
+However, in the end, after facing technical problems and errors, we arrived at the following structure:
 # Classes
 
 ## Snake
@@ -45,7 +49,7 @@ It receives the snake head and tail's locations as a parameter.
     - gameSpeed (an integer to use it in the Sleep() to delay the game, and every
     gameLevel the delay will decrease so the game will speed up)
     - lastInput (a char to track the last input, so the snake moves until the user
-    chance the direction of the snake.)
+    change the direction of the snake.)
     - snake (an instance from the Snake class, makes a snake object.)
     - food (an instance from the Food class, makes a Food object.)
     - obstaclesX (an integer stores the obstacles X axis)
@@ -74,3 +78,6 @@ It starts the game by containing the game loop and using the gameDraw and gameLo
 #### main
 
 It starts the game.
+
+
+
