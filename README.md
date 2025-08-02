@@ -43,7 +43,8 @@ It receives the snake head and tail's locations as a parameter.
     - gameLevel (an integer to track Game difficulty\level)
     - gameSpeed (an integer to use it in the Sleep() to delay the game, and every
     gameLevel the delay will decrease so the game will speed up)
-    - lastInput (a char to track the last input, so the snake moves until the user chance the direction of the snake.)
+    - lastInput (a char to track the last input, so the snake moves until the user
+    chance the direction of the snake.)
     - snake (an instance from the Snake class, makes a snake object.)
     - food (an instance from the Food class, makes a Food object.)
     - obstaclesX (an integer stores the obstacles X axis)
