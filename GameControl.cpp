@@ -16,12 +16,14 @@ class GameControl
     public:
     bool gameOver = false;
     bool gamePaused = false;
-    int width = 15;
+    int width = 13;
     int height = 25;
     int score = 0;
     int gameSpeed = 100; // Speed of the game in milliseconds
     int gameLevel = 1; // Initial game level
-    char lastInput = 'd'; // Default direction is right
+    enum eDirection {ESC, STOP, UP = 'w', DOWN = 's', LEFT = 'a', RIGHT = 'd'};
+    eDirection dir;
+    eDirection lastDir = RIGHT; // Default direction is right
     Snake* snake = new Snake(2);
     Food* food = new Food(snake->body, width, height);
     int obstaclesX = rand() % width;
@@ -38,8 +40,37 @@ class GameControl
         SetConsoleTextAttribute(hConsole, 15); // Reset to white on black
     }
 
+    void input()
+    {
+        if (_kbhit())
+        {
+            switch (_getch())
+            {
+                case 'w':
+                    dir = UP;
+                    break;
+                case 's':
+                    dir = DOWN;
+                    break;
+                case 'a':
+                    dir = LEFT;
+                    break;
+                case 'd':
+                    dir = RIGHT;
+                    break;
+                case 'p':
+                    dir = STOP; // Pause the game
+                    break;
+                case 'q':
+                    dir = ESC; // Quit the game
+                    break;
+            }
+        }
+    }
+
     void gameDraw()
     {
+        system("cls"); // Clear the console for the next frame
         for (int i = 0; i <= width; i++)
         {
             for (int j = 0; j <= height; j++)
@@ -113,9 +144,9 @@ class GameControl
             cout << "Press 'p' to pause the game." << endl;
         }
     }
-    void gameLogic(char pressed)
+    void gameLogic(eDirection dir)
     {
-        if (pressed == 'q')
+        if (dir == ESC)
         {
             gameOver = true; // Quit the game
             return;
@@ -139,7 +170,7 @@ class GameControl
                 }
             }
         }
-        snake->move(pressed, collision);
+        snake->move(dir, collision);
         if (snake->body[0][0] <= 0)
         {
             snake->body[0][0] = width - 1; // Wrap around to the other side
@@ -176,40 +207,46 @@ class GameControl
     }
     void startGame()
     {
-
         while (!gameOver)
         {
             gameDraw();
             Sleep(gameSpeed); // Sleep for the specified game speed
             if (_kbhit()) // Check if a key is pressed
             {
-                char pressed = getch();
-                
+                input(); // Get the input from the user
+
                 // Handle pause toggle immediately
-                if (pressed == 'p' || pressed == 'P')
+                if (dir == STOP)
                 {
                     gamePaused = !gamePaused;
                 }
                 else if (!gamePaused)  // Only update movement if not paused
                 {
-                    lastInput = pressed; // Update last input
-                    gameLogic(pressed); // Call game logic with the pressed key
+                    if (dir == UP && lastDir == DOWN ||
+                        dir == DOWN && lastDir == UP ||
+                        dir == LEFT && lastDir == RIGHT ||
+                        dir == RIGHT && lastDir == LEFT)
+                    {
+                        // Prevent the snake from moving in the opposite direction
+                        continue; // Skip the game logic if the direction is opposite
+                    }
+                    else
+                    {
+                        gameLogic(dir); // Call game logic with the pressed key
+                    }
+                    lastDir = dir; // Update last input
                 }
             }
             else if (!gamePaused)  // Only use last input if not paused
             {
-                gameLogic(lastInput); // Use the last input if no new input is given
+                gameLogic(lastDir); // Use the last input if no new input is given
             }
-            
+
             // Game over handling
             if (gameOver)
             {
                 cout << "===========\n Game Over! \n===========" << endl;
                 cout << "Your score is: " << score << endl;
-            }
-            else
-            {
-                system("cls"); // Clear the console for the next frame
             }
         }
     }
